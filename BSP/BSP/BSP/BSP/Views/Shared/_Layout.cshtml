@@ -1,0 +1,118 @@
+﻿@helper actived(string action, string controller)
+{
+    if (string.Equals(controller, ViewContext.RouteData.Values["controller"].ToString(), StringComparison.CurrentCultureIgnoreCase) &&
+        string.Equals(action, ViewContext.RouteData.Values["action"].ToString(), StringComparison.CurrentCultureIgnoreCase))
+    {
+        @:class="active"
+    }
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - 第三波网上书店</title>
+    @Styles.Render("~/Content/css")
+    @RenderSection("Styles", false)
+    <style type="text/css">
+        #time {
+            text-align: center;
+            color: #5993c5;
+            padding-top: 20px;
+            padding-bottom: 10px;
+        }
+    </style>
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <div class="navbar-brand">
+                    <i class="glyphicon glyphicon-book"></i>
+                </div>
+            </div>
+            <div class="navbar-collapse collapse">
+                @Html.Partial("_SigninPartial")
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        <div class="page-header">
+            <h1>
+                <img src="~/Images/logo.jpg" /><small>书店</small>
+            </h1>
+        </div>
+        <div class="navbar navbar-default">
+            <div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li @actived("Index", "Home")><a href="@Url.Action("Index","Home")" class="navbar-link">首页</a></li>
+                        <li @actived("List", "Book")><a href="@Url.Action("List","Book")" class="navbar-link">商讯</a></li>
+                        <li @actived("Index", "Book")><a href="@Url.Action("Index","Book")" class="navbar-link active">个性化推荐</a></li>
+                        <li><a href="javascript:void(0);" class="navbar-link">购物流程</a></li>
+                        <li><a href="javascript:void(0);" class="navbar-link">在线客服</a></li>
+                        <li><a href="javascript:void(0);" class="navbar-link">积分兑换</a></li>
+                        <li><a href="@Url.Action("Index", "Home", new {area="Admin" })" class="navbar-link">管理入口</a></li>
+                        <li><a href="javascript:void(0);" class="navbar-link">帮助</a></li>
+                    </ul>
+                    <div class="navbar-right" style="padding-right:15px;">
+                        @using (Html.BeginForm("Seach", "Book", FormMethod.Post, new { @class = "form-horizontal navbar-form" }))
+                        {
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <input type="text" name="title" class="form-control" placeholder="请输入关键字" value="" />
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        @RenderBody()
+        <hr />
+        <footer class="text-right">
+            <p>&copy; @DateTime.Now.Year - 第三波网上书店</p>
+        </footer>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("Scripts", required: false)
+    <script type="text/javascript">
+        $(function () {
+            setTime();
+        });
+        function showTime() {
+            var dayOfWeek = new Array('日', '一', '二', '三', '四', '五', '六');
+            var today = new Date();
+            var content = '';
+            content += today.getFullYear() + '年';
+            content += appendZero(today.getMonth() + 1) + '月';
+            content += appendZero(today.getDate()) + '日 ';
+            content += appendZero(today.getHours()) + ':';
+            content += appendZero(today.getMinutes()) + ':';
+            content += appendZero(today.getSeconds());
+            content += ' 星期' + dayOfWeek[today.getDay()];
+            document.getElementById('time').innerHTML = content;
+        }
+
+        function appendZero(num) {
+            if (parseInt(num) < 10) {
+                return '0' + num;
+            }
+            return num;
+        }
+        var timer;
+        function setTime() {
+            timer = setInterval('showTime()', 1000);
+        }
+        function clearTimer() {
+            clearInterval(timer);
+        }
+    </script>
+</body>
+</html>

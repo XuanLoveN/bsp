@@ -1,0 +1,9 @@
+C:\Users\x\Desktop\BSP\05_Infrastructure\BSP.Core\bin\Debug\BSP.Core.dll
+C:\Users\x\Desktop\BSP\05_Infrastructure\BSP.Core\bin\Debug\BSP.Core.pdb
+C:\Users\x\Desktop\BSP\05_Infrastructure\BSP.Core\bin\Debug\BSP.Exception.dll
+C:\Users\x\Desktop\BSP\05_Infrastructure\BSP.Core\bin\Debug\Newtonsoft.Json.dll
+C:\Users\x\Desktop\BSP\05_Infrastructure\BSP.Core\bin\Debug\BSP.Exception.pdb
+C:\Users\x\Desktop\BSP\05_Infrastructure\BSP.Core\bin\Debug\Newtonsoft.Json.xml
+C:\Users\x\Desktop\BSP\05_Infrastructure\BSP.Core\obj\Debug\BSP.Core.csprojResolveAssemblyReference.cache
+C:\Users\x\Desktop\BSP\05_Infrastructure\BSP.Core\obj\Debug\BSP.Core.dll
+C:\Users\x\Desktop\BSP\05_Infrastructure\BSP.Core\obj\Debug\BSP.Core.pdb

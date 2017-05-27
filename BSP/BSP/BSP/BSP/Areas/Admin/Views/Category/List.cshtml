@@ -1,0 +1,124 @@
+﻿@model IList<BSP.Model.Category>
+@{
+    ViewBag.Title = "图书类别管理";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div class="well well-sm">
+    <a class="btn btn-success" href="javascript:void(0);" data-toggle="modal" data-target="#myModal"><i class="glyphicon glyphicon-plus"></i> 添加分类</a>
+    <a class="btn btn-danger btn-remove-all" href="javascript:void(0);" data-url="@Url.Action("DeleteAll")"><i class="glyphicon glyphicon-remove"></i> 删除选中</a>
+</div>
+<table class="table table-hover table-condensed">
+    <thead>
+        <tr>
+            <th><input type="checkbox" id="chkAll" /></th>
+            <th># 分类编号</th>
+            <th># 分类名称</th>
+            <th># 操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td><input type="checkbox" class="chkItem" name="delIDs" value="@item.Id" /></td>
+                <td>@item.Id</td>
+                <td>@item.Name</td>
+                <td>
+                    <a href="@Url.Action("Edit", new {id = item.Id })" class="text-success"><i class="glyphicon glyphicon-edit"></i></a>
+                    <a href="@Url.Action("Delete", new { id = item.Id })" class="text-danger"><i class="glyphicon glyphicon-remove-sign"></i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">关闭</span></button>
+                <h4 class="modal-title" id="myModalLabel">添加图书分类</h4>
+            </div>
+            @using (Ajax.BeginForm("Create", null, new AjaxOptions { OnSuccess = "onCreateCategorySuccess", LoadingElementId = "loadElement" }, new { @class = "form-horizontal" }))
+            {
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="txtCategoryName" class="control-label col-md-3">分类名称：</label>
+                        <div class="col-md-6">
+                            <input type="text" id="txtCategoryName" name="CategoryName" class="form-control" />
+                        </div>
+                        <div class="col-md-3">
+                            <div id="loadElement" style="display:none;">
+                                <img src="~/Images/8.gif" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="submit" class="btn btn-primary">保存分类</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('#chkAll').on('click', checkAll);
+            $('.chkItem').on('click', checkItem);
+            $('.btn-remove-all').click(function () {
+                var url = $(this).attr('data-url');
+                var ids = '';
+                var elements = document.getElementsByName('delIDs');
+                for (var i = 0; i < elements.length; i++) {
+                    if (elements[i].checked) {
+                        ids += elements[i].value + ',';
+                    }
+                }
+                if (ids.length > 0) {
+                    if (confirm('确认删除选中项目吗？')) {
+                        ids = ids.substr(0, ids.length - 1);
+                        $.post(url, { 'ids': ids }, function (data) {
+                            if (data == '0') {
+                                alert('删除失败');
+                            }
+                            else {
+                                alert('批量删除数据成功');
+                                location.reload();
+                            }
+                        });
+                    }
+                }
+            });
+        });
+
+        var checkAll = function () {
+            var checked = document.getElementById('chkAll').checked;
+            var elements = document.getElementsByName('delIDs');
+            for (var i = 0; i < elements.length; i++) {
+                elements[i].checked = checked;
+            }
+        };
+
+        var checkItem = function () {
+            var flag = true;
+            var elements = document.getElementsByName('delIDs');
+            for (var i = 0; i < elements.length; i++) {
+                if (!elements[i].checked) {
+                    flag = false;
+                    break;
+                }
+            }
+            document.getElementById('chkAll').checked = flag;
+        };
+
+        var onCreateCategorySuccess = function (data) {
+            if (data.Result) {
+                alert('添加成功');
+                $('#myModal').modal('hide')
+            }
+        };
+    </script>
+}

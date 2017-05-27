@@ -1,0 +1,39 @@
+﻿@model BSP.ViewModel.ShoppingCart
+@{
+    ViewBag.Title = "确认订单";
+}
+@if (TempData[BSP.Common.Constants.COMMANDRESULTKEY] != null)
+{
+    <div class="alert alert-info"><b>执行结果 </b> @TempData[BSP.Common.Constants.COMMANDRESULTKEY].ToString()</div>
+}
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th># 图书封面</th>
+            <th># 书名</th>
+            <th># 数量</th>
+            <th># 单价</th>
+            <th># 小计</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Items.Values)
+        {
+            <tr>
+                <td><img width="40" height="60" src="@Url.Content(string.Format("~/Images/BookCovers/{0}.jpg",item.Book.ISBN))" alt="@item.Book.Title" /></td>
+                <td>@item.Book.Title</td>
+                <td>@item.Count</td>
+                <td>@item.Book.UnitPrice.ToString("C")</td>
+                <td>@item.Subtotal.ToString("C")</td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="5" class="text-right">
+                @Html.ActionLink("取消订单", "Index", "Home", null, new { @class = "btn btn-danger" })
+                @Html.ActionLink("确认订单", "Confirm", "Order", null, new { @class = "btn btn-success" })
+            </td>
+        </tr>
+    </tfoot>
+</table>

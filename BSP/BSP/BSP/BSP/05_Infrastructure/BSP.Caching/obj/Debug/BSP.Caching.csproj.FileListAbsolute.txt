@@ -1,0 +1,12 @@
+C:\Users\x\Desktop\BSP\05_Infrastructure\BSP.Caching\bin\Debug\BSP.Caching.dll
+C:\Users\x\Desktop\BSP\05_Infrastructure\BSP.Caching\bin\Debug\BSP.Caching.pdb
+C:\Users\x\Desktop\BSP\05_Infrastructure\BSP.Caching\bin\Debug\BSP.Core.dll
+C:\Users\x\Desktop\BSP\05_Infrastructure\BSP.Caching\bin\Debug\Newtonsoft.Json.dll
+C:\Users\x\Desktop\BSP\05_Infrastructure\BSP.Caching\bin\Debug\Ninject.dll
+C:\Users\x\Desktop\BSP\05_Infrastructure\BSP.Caching\bin\Debug\BSP.Exception.dll
+C:\Users\x\Desktop\BSP\05_Infrastructure\BSP.Caching\bin\Debug\BSP.Core.pdb
+C:\Users\x\Desktop\BSP\05_Infrastructure\BSP.Caching\bin\Debug\Newtonsoft.Json.xml
+C:\Users\x\Desktop\BSP\05_Infrastructure\BSP.Caching\bin\Debug\BSP.Exception.pdb
+C:\Users\x\Desktop\BSP\05_Infrastructure\BSP.Caching\obj\Debug\BSP.Caching.csprojResolveAssemblyReference.cache
+C:\Users\x\Desktop\BSP\05_Infrastructure\BSP.Caching\obj\Debug\BSP.Caching.dll
+C:\Users\x\Desktop\BSP\05_Infrastructure\BSP.Caching\obj\Debug\BSP.Caching.pdb

@@ -1,0 +1,94 @@
+﻿@model BSP.ViewModel.SigninViewModel
+@{
+    ViewBag.Title = "用户登录";
+}
+@Html.Partial("_ErrorMessage")
+<div class="row">
+    <div class="col-md-offset-3 col-md-6">
+        <div class="panel panel-default panel-signin">
+            <div class="panel-heading"><i class="glyphicon glyphicon-user"></i> 用户登录</div>
+            <div class="panel-body">
+                @using (Html.BeginRouteForm("Default", FormMethod.Post, new { @class = "form-horizontal" }))
+                {
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.UserName, new { @class = "col-md-3 control-label" })
+                        <div class="col-md-6">
+                            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", autofocus = "autofocus" })
+                        </div>
+                        @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger col-md-3" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Password, new { @class = "col-md-3 control-label" })
+                        <div class="col-md-6">
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                        </div>
+                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger col-md-3" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.ValidateCode, new { @class = "col-md-3 control-label" })
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                @Html.TextBoxFor(m => m.ValidateCode, new { @class = "form-control" })
+                                <span class="input-group-addon">
+                                    <img data-id="validate-code" src="@Url.Action("Index","Captcha")" alt="看不清？点我刷新" />
+                                </span>
+                            </div>
+                        </div>
+                        @Html.ValidationMessageFor(m => m.ValidateCode, "", new { @class = "text-danger col-md-3" })
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-3 col-md-6">
+                            <div class="checkbox">
+                                <label>
+                                    @Html.CheckBoxFor(m => m.Remember)
+                                    <b>@Html.LabelFor(m => m.Remember)</b>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-3 col-md-6">
+                            @Html.Submit("登录", new { @class = "btn btn-primary btn-block" })
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        //重新加载验证码
+        var reloadValidateCode = function () {
+            var currentSrc = $('[data-id="validate-code"]').attr('src');
+            if (currentSrc.indexOf('?') != -1) {
+                currentSrc = currentSrc.substring(0, currentSrc.indexOf('?'));
+            }
+            $('[data-id="validate-code"]').attr('src', currentSrc + '?rand=' + Math.random());
+        };
+
+        $(function () {
+            //添加验证码验证策略
+            $('#ValidateCode').rules('add', {
+                remote: {
+                    url: '../Captcha/Check',
+                    data: {
+                        id: function () {
+                            return $('#ValidateCode').val();
+                        }
+                    }
+                },
+                messages: {
+                    remote: function (message) {
+                        reloadValidateCode();
+                        return message;
+                    }
+                }
+            });
+
+            reloadValidateCode();
+            $('[data-id="validate-code"]').click(reloadValidateCode);
+        });
+    </script>
+}

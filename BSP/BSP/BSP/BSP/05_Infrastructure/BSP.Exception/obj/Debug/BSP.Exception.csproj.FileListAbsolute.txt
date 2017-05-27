@@ -1,0 +1,6 @@
+C:\Users\x\Desktop\BSP\05_Infrastructure\BSP.Exception\bin\Debug\BSP.Exception.dll
+C:\Users\x\Desktop\BSP\05_Infrastructure\BSP.Exception\bin\Debug\BSP.Exception.pdb
+C:\Users\x\Desktop\BSP\05_Infrastructure\BSP.Exception\bin\Debug\Newtonsoft.Json.dll
+C:\Users\x\Desktop\BSP\05_Infrastructure\BSP.Exception\bin\Debug\Newtonsoft.Json.xml
+C:\Users\x\Desktop\BSP\05_Infrastructure\BSP.Exception\obj\Debug\BSP.Exception.dll
+C:\Users\x\Desktop\BSP\05_Infrastructure\BSP.Exception\obj\Debug\BSP.Exception.pdb

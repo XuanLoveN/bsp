@@ -1,0 +1,49 @@
+﻿@model BSP.ViewModel.ShoppingCart
+@{
+    ViewBag.Title = "购物车";
+}
+@if (Model.Items.Count > 0)
+{
+    <div class="page-header"><h3><i class="glyphicon glyphicon-shopping-cart"></i> @ViewBag.Title</h3></div>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th># 书名</th>
+                <th># 作者</th>
+                <th># 价格</th>
+                <th># 数量</th>
+                <th># 小计</th>
+                <th># 操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Items.Values)
+            {
+                <tr>
+                    <td>@item.Book.Title</td>
+                    <td>@item.Book.Author</td>
+                    <td>@item.Book.UnitPrice.ToString("C")</td>
+                    <td>@item.Count</td>
+                    <td>@item.Subtotal.ToString("C")</td>
+                    <td>
+                        <a href="javascript:void(0);">删除</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td>总价：@Model.TotalPrice.ToString("C")</td>
+                <td colspan="5" class="text-right">
+                    <a href="@Url.Action("Index","Order")" onclick="return confirm('确认下单？');" class="btn btn-primary">立即下单</a>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+}
+else
+{
+    <div class="alert alert-info">
+        <b>提示!</b> 您还没有选购任何商品，请跳转至 <b>@Html.ActionLink("图书列表", "List", "Book")</b> 页面进行购买
+    </div>
+}

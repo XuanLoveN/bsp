@@ -1,0 +1,15 @@
+C:\Users\x\Desktop\BSP\04_Domain\BSP.IRepostitory\bin\Debug\BSP.IRepostitory.dll
+C:\Users\x\Desktop\BSP\04_Domain\BSP.IRepostitory\bin\Debug\BSP.IRepostitory.pdb
+C:\Users\x\Desktop\BSP\04_Domain\BSP.IRepostitory\bin\Debug\BSP.Common.dll
+C:\Users\x\Desktop\BSP\04_Domain\BSP.IRepostitory\bin\Debug\BSP.Model.dll
+C:\Users\x\Desktop\BSP\04_Domain\BSP.IRepostitory\bin\Debug\Newtonsoft.Json.dll
+C:\Users\x\Desktop\BSP\04_Domain\BSP.IRepostitory\bin\Debug\BSP.Core.dll
+C:\Users\x\Desktop\BSP\04_Domain\BSP.IRepostitory\bin\Debug\BSP.Exception.dll
+C:\Users\x\Desktop\BSP\04_Domain\BSP.IRepostitory\bin\Debug\BSP.Common.pdb
+C:\Users\x\Desktop\BSP\04_Domain\BSP.IRepostitory\bin\Debug\BSP.Model.pdb
+C:\Users\x\Desktop\BSP\04_Domain\BSP.IRepostitory\bin\Debug\Newtonsoft.Json.xml
+C:\Users\x\Desktop\BSP\04_Domain\BSP.IRepostitory\bin\Debug\BSP.Core.pdb
+C:\Users\x\Desktop\BSP\04_Domain\BSP.IRepostitory\bin\Debug\BSP.Exception.pdb
+C:\Users\x\Desktop\BSP\04_Domain\BSP.IRepostitory\obj\Debug\BSP.IRepostitory.csprojResolveAssemblyReference.cache
+C:\Users\x\Desktop\BSP\04_Domain\BSP.IRepostitory\obj\Debug\BSP.IRepostitory.dll
+C:\Users\x\Desktop\BSP\04_Domain\BSP.IRepostitory\obj\Debug\BSP.IRepostitory.pdb

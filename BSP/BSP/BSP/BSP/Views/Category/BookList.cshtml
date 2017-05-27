@@ -1,0 +1,55 @@
+﻿@model IList<BSP.Model.Book>
+@{
+    ViewBag.Title = "分类图书列表";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Styles{
+    <style type="text/css">
+        .book-item {
+            height: 400px;
+        }
+            .book-item img {
+                height: 260px;
+                width: 80%;
+            }
+    </style>
+}
+<div class="row">
+    @foreach (var book in Model)
+    {
+        <div class="col-md-3">
+            <dl class="book-item">
+                <dt>
+                    <img class="thumbnail img-thumbnail" src="@Url.Content("~/Images/BookCovers/" + book.ISBN + ".jpg")" />
+                </dt>
+                <dd>
+                    <h4 title="@book.Title">
+                        @book.Title.CutString(10)
+                    </h4>
+                </dd>
+                <dd style="margin:10px auto">
+                    定价：<label class="text-success">@book.UnitPrice.ToString("C")</label>
+                </dd>
+                <dd  style="margin:10px auto">
+                    <a class="btn btn-sm btn-default" title="图书详情" href="@Url.Action("Detail", "Book", new { id = book.Id })"><i class="glyphicon glyphicon-th-list"></i></a>
+                    <a class="btn btn-sm btn-success"  data-ajax="true" data-ajax-update="#shopping-cart-container" data-ajax-mode="replace" href="@Url.Action("Add", "ShoppingCart", new { id = book.Id })"><i class="glyphicon glyphicon-shopping-cart"></i> 加入购物车</a>
+                </dd>
+            </dl>
+        </div>
+    }
+    </div>
+    @section Scripts{
+<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+<script src="~/Scripts/jquery-ui-1.12.0.js"></script>
+<script src="~/Scripts/jquery-ui.datepicker-zh-CN.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('.btn.btn-sm.btn-success').on("click", function () {
+            var title = $(this).parent().prev().prev().children("h4").text();
+            alert(title + "加入购物车成功");
+        });
+    });
+</script>
+    }
+
+

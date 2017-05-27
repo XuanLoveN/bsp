@@ -1,0 +1,146 @@
+﻿@model BSP.ViewModel.BookViewModel
+@{
+    ViewBag.Title = "编辑图书信息";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@section Styles{
+    <link href="~/Content/themes/base/core.css" rel="stylesheet" />
+    <link href="~/Content/themes/base/theme.css" rel="stylesheet" />
+    <link href="~/Content/themes/base/datepicker.css" rel="stylesheet" />
+    <link href="~/Plugins/ckeditor/skins/moono/editor.css" rel="stylesheet" />
+}
+<div class="page-header">@ViewBag.Title</div>
+@if (TempData["CommandResult"] != null)
+{
+    if ((bool)TempData["CommandResult"])
+    {
+        <div class="alert alert-success alert-dismissible fade in" role="alert">
+            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">关闭</span></button>
+            <strong>成功!</strong> 图书信息更新成功.
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-danger alert-dismissible fade in" role="alert">
+            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">关闭</span></button>
+            <strong>错误!</strong> 图书信息更新失败.
+        </div>
+    }
+}
+@using (Html.BeginForm("Edit", "Book", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-group">
+        @Html.LabelFor(m => m.Book.Id, new { @class = "col-md-3 control-label" })
+        <div class="col-md-6">
+            @Html.TextBoxFor(m => m.Book.Id, new { @class = "form-control", @readonly = "readonly" })
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Book.Title, new { @class = "col-md-3 control-label" })
+        <div class="col-md-6">
+            @Html.TextBoxFor(m => m.Book.Title, new { @class = "form-control" })
+        </div>
+        <div class="col-md-3">
+            @Html.ValidationMessageFor(m => m.Book.Title, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Book.ISBN, new { @class = "col-md-3 control-label" })
+        <div class="col-md-6">
+            <input type="file" name="isbn_img" class="form-control" />
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Book.UnitPrice, new { @class = "col-md-3 control-label" })
+        <div class="col-md-6">
+            @Html.TextBoxFor(m => m.Book.UnitPrice, new { @class = "form-control" })
+        </div>
+        <div class="col-md-3">
+            @Html.ValidationMessageFor(m => m.Book.UnitPrice, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Book.PublisherId, new { @class = "col-md-3 control-label" })
+        <div class="col-md-6">
+            @Html.DropDownListFor(m => m.Book.PublisherId, Model.Publishers, "请选择出版社", new { @class = "form-control" })
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Book.CategoryId, new { @class = "col-md-3 control-label" })
+        <div class="col-md-6">
+            @Html.DropDownListFor(m => m.Book.CategoryId, Model.Categories, "请选择出版社", new { @class = "form-control" })
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-3 control-label">ISBN</label>
+        <div class="col-md-6">
+            @Html.TextBoxFor(m => m.Book.ISBN, new { @class = "form-control" })
+        </div>
+        <div class="col-md-3">
+            @Html.ValidationMessageFor(m => m.Book.ISBN, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Book.Author, new { @class = "col-md-3 control-label" })
+        <div class="col-md-6">
+            @Html.TextBoxFor(m => m.Book.Author, new { @class = "form-control" })
+        </div>
+        <div class="col-md-3">
+            @Html.ValidationMessageFor(m => m.Book.Author, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Book.PublishDate, new { @class = "col-md-3 control-label" })
+        <div class="col-md-6">
+            @Html.TextBoxFor(m => m.Book.PublishDate, "{0:yyyy-MM-dd}", new { @class = "form-control" })
+        </div>
+        <div class="col-md-3">
+            @Html.ValidationMessageFor(m => m.Book.PublishDate, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Book.ContentDescription, new { @class = "col-md-3 control-label" })
+        <div class="col-md-9">
+            @Html.TextAreaFor(m => m.Book.ContentDescription, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Book.TOC, new { @class = "col-md-3 control-label" })
+        <div class="col-md-9">
+            @Html.TextAreaFor(m => m.Book.TOC, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-3 col-md-6">
+            @Html.Submit("保存", new { @class = "btn btn-primary btn-block" })
+        </div>
+    </div>
+}
+@section Scripts{
+    @* My97DatePicker *@
+    <script src="~/Scripts/jquery-ui-1.12.0.js"></script>
+    <script src="~/Scripts/jquery-ui.datepicker-zh-CN.js"></script>
+    <script src="~/Plugins/ckeditor/ckeditor.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('#Book_PublishDate').datepicker({ 'currentText': $(this).val(), 'dateFormat': 'yy-mm-dd' });
+            CKEDITOR.replace('Book_ContentDescription');
+            CKEDITOR.replace('Book_TOC');
+        });
+    </script>
+}

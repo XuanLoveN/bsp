@@ -1,0 +1,31 @@
+﻿
+    <div class="row">
+        <div class="col-md-3">
+            <div class="navbar-left">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    var userTicket = BSP.Mvc.UserTicketManager.CurrentUserTicket;
+                    <b class="navbar-text">欢迎 @userTicket.Name [@userTicket.RoleName] </b>
+                    <a href="@Url.Action("Signout","Account")" class="btn navbar-btn btn-danger"><i class="glyphicon glyphicon-log-out"></i> 注销</a>
+                }
+                else
+                {
+                    <a href="@Url.Action("Signin","Account")" class="btn navbar-btn btn-primary"><i class="glyphicon glyphicon-log-in"></i> 登录</a>
+                    <a href="@Url.Action("Register","Account")" class="btn navbar-btn btn-success"><i class="glyphicon glyphicon-registration-mark"></i> 注册</a>
+                }
+            </div>
+        </div>
+        <div class="col-md-4" id="time" > </div>
+
+        <div class="col-md-4" >
+            <div class="navbar-right">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    var userTicket = BSP.Mvc.UserTicketManager.CurrentUserTicket;
+                    <a href="@Url.Action("Index","ShoppingCart")" class="btn navbar-btn btn-danger"><i class="glyphicon glyphicon-shopping-cart"></i> 我的购物车</a>
+                    <a href="@Url.Action("Register","Account")" class="btn navbar-btn btn-success"><i class="glyphicon glyphicon-list"></i> 商品分类</a>
+                    <a href="@Url.Action("Register","Account")" class="btn navbar-btn btn-success"><i class="glyphicon glyphicon-headphones"></i> 联系客服</a>
+                }
+            </div>
+        </div>
+    </div>

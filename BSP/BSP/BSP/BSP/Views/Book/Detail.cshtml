@@ -1,0 +1,45 @@
+﻿@model BSP.Model.Book
+
+@{
+    ViewBag.Title = "图书详情";
+}
+
+<div class="row">
+    <div class="col-md-3">
+        <img class="thumbnail img-thumbnail" src="@Url.Content("~/Images/BookCovers/" + Model.ISBN + ".jpg")" height="200" width="130" />
+    </div>
+    <div class="col-md-8">
+        <p><a class="" title="图书详情" href="@Url.Action("Detail", "Book")">@Model.Title</a></p>
+        <p>作者：@Model.Author</p>
+        <p>出版社名称：@Model.PublisherName</p>
+        <p>出版日期：@Model.PublishDate</p>
+        <p>价格：<span class="btn btn-group-xs btn-success">@Model.UnitPrice.ToString("C")</span></p>
+        <p>
+            @Html.ActionLink("返回", "Index","Home", new { id = Model.Id }) |
+            <a class="btn btn-sm btn-danger" data-ajax="true" data-ajax-update="#shopping-cart-container" data-ajax-mode="replace" href="@Url.Action("Add", "ShoppingCart", new { id = Model.Id })"><i class="glyphicon glyphicon-shopping-cart"></i> 加入购物车</a>
+        </p>
+    </div>
+</div>
+<div class="row">
+    <hr />
+    <p>内容描述</p>
+    <p>@(new MvcHtmlString(Model.ContentDescription))
+</div>
+<div class="row">
+    <hr />
+    <p>目录</p>
+    <p>@(new MvcHtmlString(Model.TOC))
+</div>
+@section Scripts{
+<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+<script src="~/Scripts/jquery-ui-1.12.0.js"></script>
+<script src="~/Scripts/jquery-ui.datepicker-zh-CN.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('.btn.btn-sm.btn-danger').on("click", function () {
+            var title = $(this).parent().prev().prev().children("h4").text();
+            alert(title + "加入购物车成功");
+        });
+    });
+</script>
+    }

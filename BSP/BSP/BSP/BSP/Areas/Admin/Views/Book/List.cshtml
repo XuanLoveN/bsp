@@ -1,0 +1,60 @@
+﻿@model BSP.Model.PagedList<BSP.Model.Book>
+@{
+    ViewBag.Title = "图书管理";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div style="height:20px;"></div>
+<div class="well well-sm">
+    @using (Html.BeginForm())
+    {
+        @Html.DropDownList("CategoryId", (ViewData["Categories"] as IEnumerable<SelectListItem>), "全部分类", new { @class = "form-control" })
+        @Html.HiddenFor(m => m.PageIndex)
+    }
+</div>
+@if (Model.IsNotNull)
+{
+    <table class="table table-condensed table-hover">
+        <thead>
+            <tr>
+                <th># 编号</th>
+                <th># 书名</th>
+                <th># 作者</th>
+                <th># 操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var book in Model)
+            {
+                <tr>
+                    <td>@book.Id</td>
+                    <td>@book.Title</td>
+                    <td>@book.Author</td>
+                    <td>
+                        <a href="@Url.Action("Edit", new {id=book.Id })"><i class="glyphicon glyphicon-edit text-success"></i></a>
+                        <a href="@Url.Action("Delete", new {id=book.Id })" onclick="return confirm('是否确认删除？');"><i class="glyphicon glyphicon-remove text-danger"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    @Html.RenderPager(Model, "changePage")
+}
+else
+{
+    <h1>未找到相关记录</h1>
+}
+@section Scripts{
+    <script type="text/javascript">
+        $(function () {
+            $('#CategoryId').change(function () {
+                $('#PageIndex').val(1);
+                $(this).parent('form').submit();
+            });
+        });
+
+        var changePage = function (index) {
+            $('#PageIndex').val(index);
+            $('form').submit();
+        };
+    </script>
+}

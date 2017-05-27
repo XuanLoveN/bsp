@@ -1,0 +1,10 @@
+﻿@model IList<BSP.Model.Category>
+<div class="panel panel-default">
+    <div class="panel-heading"><i class="glyphicon glyphicon-th-list"></i> 图书分类</div>
+    <div class="list-group">
+        @foreach (var item in Model)
+        {
+            @Html.ActionLink(item.Name, "BookList", "Category", new { id = item.Id }, new { @class = "list-group-item" })
+        }
+    </div>
+</div>

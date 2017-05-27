@@ -1,0 +1,24 @@
+﻿@model IList<BSP.Model.Book>
+@{
+    ViewBag.Title = "个性化推荐";
+}
+<div class="list-group">
+    @foreach (var book in Model)
+    {
+        <div class="list-group-item">
+            <div class="row">
+                <div class="col-md-3">
+                    <img class="img-thumbnail" width="200" height="280"  src="@Url.Content(string.Format("~/Images/BookCovers/{0}.jpg", book.ISBN))" alt="@book.Title" />
+                </div>
+                <div class="col-md-9">
+                    <h4>@Html.ActionLink(book.Title, "Detail", new { id = book.Id })</h4>
+                    <p>作者： @book.Author</p>
+                    <p>出版社： @book.PublisherId</p>
+                    <p>出版日期： @book.PublishDate.ToString("yyyy年MM月")</p>
+                    <p>@BSP.Core.TextUtility.ReplaceHtmlTags(book.ContentDescription)</p>
+                    <p>价格： <span class="label label-success">@book.UnitPrice.ToString("C")</span></p>
+                </div>
+            </div>
+        </div>
+    }
+</div>

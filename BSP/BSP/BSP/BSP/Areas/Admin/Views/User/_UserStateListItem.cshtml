@@ -1,0 +1,14 @@
+﻿@model BSP.ViewModel.UserStateListViewModel
+@using (Html.BeginForm("SaveUserStateAndRole", "User"))
+{
+    <tr>
+        <td>@Model.User.Name</td>
+        <td>@Html.DropDownListFor(m => m.User.UserStateId, Model.States, new { @class = "form-control" })</td>
+        <td>@Html.DropDownListFor(m => m.User.UserRoleId, Model.Roles, new { @class = "form-control" })</td>
+        <td>
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(m => m.User.Id)
+            @Html.Submit("保存", new { @class = "btn btn-primary" })
+        </td>
+    </tr>
+}

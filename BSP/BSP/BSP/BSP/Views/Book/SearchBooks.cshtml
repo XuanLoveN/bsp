@@ -1,0 +1,29 @@
+﻿@model IList<BSP.Model.Book>
+@{
+    ViewBag.Title = "SearchBooks";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    @foreach (var book in Model)
+    {
+        <div class="col-md-3">
+            <dl class="book-item">
+                <dt>
+                    <img class="thumbnail img-thumbnail" src="@Url.Content("~/Images/BookCovers/" + book.ISBN + ".jpg")" />
+                </dt>
+                <dd>
+                    <h4 title="@book.Title">
+                        @book.Title.CutString(10)
+                    </h4>
+                </dd>
+                <dd style="margin:10px auto">
+                    定价：<label class="text-success">@book.UnitPrice.ToString("C")</label>
+                </dd>
+                <dd style="margin:10px auto">
+                    <a class="btn btn-sm btn-default" title="图书详情" href="@Url.Action("Detail", "Book", new { id = book.Id })"><i class="glyphicon glyphicon-th-list"></i></a>
+                    <a class="btn btn-sm btn-success" data-ajax="true" data-ajax-update="#shopping-cart-container" data-ajax-mode="replace" href="@Url.Action("Add", "ShoppingCart", new { id = book.Id })"><i class="glyphicon glyphicon-shopping-cart"></i> 加入购物车</a>
+                </dd>
+            </dl>
+        </div>
+    }
+</div>

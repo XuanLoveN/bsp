@@ -1,0 +1,55 @@
+﻿@{
+    Layout = null;
+}
+@helper actived(string action, string controller)
+{
+    if (string.Equals(controller, ViewContext.RouteData.Values["controller"].ToString(), StringComparison.CurrentCultureIgnoreCase) &&
+        string.Equals(action, ViewContext.RouteData.Values["action"].ToString(), StringComparison.CurrentCultureIgnoreCase))
+    {
+        @:active
+    }
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - 第三波网上书店</title>
+    @Styles.Render("~/Content/css")
+    @RenderSection("Styles", false)
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-brand">图书商店后台管理系统</div>
+            <div class="navbar-right"><a href="@Url.Action("Signout", "Account", new { area = "" })" class="btn btn-danger navbar-btn" title="注销"><i class="glyphicon glyphicon-off"></i></a></div>
+            <div class="navbar-right"><a href="@Url.Action("Index", "Home", new { area = "" })" class="btn btn-success navbar-btn" title="主页面"><i class="glyphicon glyphicon-home"></i></a></div>
+        </div>
+    </div>
+    <div class="container body-content">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="alert alert-success" style="margin-top:20px;">欢迎管理员 登录</div>
+                <div class="panel panel-default">
+                    <div class="panel-heading"><i class="glyphicon glyphicon-wrench"></i> 后台管理</div>
+                    <div class="list-group">
+                        <a href="@Url.Action("List", "User")" class="list-group-item @actived("List","User")">用户管理</a>
+                        <a href="@Url.Action("ListStates", "User")" class="list-group-item @actived("ListStates","User")">用户状态管理</a>
+                        <a href="@Url.Action("List", "Category")" class="list-group-item @actived("List","Category")">图书分类管理</a>
+                        <a href="@Url.Action("List", "Book")" class="list-group-item @actived("List","Book")">图书管理</a>
+                        <a href="@Url.Action("Index","Order")" class="list-group-item @actived("Index", "Order")">订单管理</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

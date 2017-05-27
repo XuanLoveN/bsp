@@ -1,0 +1,28 @@
+﻿@model IList<BSP.Model.OrderBook>
+@{
+    ViewBag.Title = "订单详情";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<table class="table table-condensed table-hover">
+    <thead>
+        <tr>
+            <th># 图书编号</th>
+            <th># 图书数量</th>
+            <th># 图书单价</th>
+            <th># 返回</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.BookID</td>
+                <td>@item.Quantity</td>
+                <td>@item.UnitPrice</td>
+                <td>
+                    <a href="@Url.Action("Index")" title="返回上一层"><i class="glyphicon glyphicon-circle-arrow-left"></i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

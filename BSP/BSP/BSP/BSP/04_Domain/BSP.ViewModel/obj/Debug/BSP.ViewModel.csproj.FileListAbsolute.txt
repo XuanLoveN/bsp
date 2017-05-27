@@ -1,0 +1,13 @@
+C:\Users\x\Desktop\BSP\04_Domain\BSP.ViewModel\bin\Debug\BSP.ViewModel.dll
+C:\Users\x\Desktop\BSP\04_Domain\BSP.ViewModel\bin\Debug\BSP.ViewModel.pdb
+C:\Users\x\Desktop\BSP\04_Domain\BSP.ViewModel\bin\Debug\BSP.Model.dll
+C:\Users\x\Desktop\BSP\04_Domain\BSP.ViewModel\bin\Debug\Newtonsoft.Json.dll
+C:\Users\x\Desktop\BSP\04_Domain\BSP.ViewModel\bin\Debug\BSP.Core.dll
+C:\Users\x\Desktop\BSP\04_Domain\BSP.ViewModel\bin\Debug\BSP.Exception.dll
+C:\Users\x\Desktop\BSP\04_Domain\BSP.ViewModel\bin\Debug\BSP.Model.pdb
+C:\Users\x\Desktop\BSP\04_Domain\BSP.ViewModel\bin\Debug\Newtonsoft.Json.xml
+C:\Users\x\Desktop\BSP\04_Domain\BSP.ViewModel\bin\Debug\BSP.Core.pdb
+C:\Users\x\Desktop\BSP\04_Domain\BSP.ViewModel\bin\Debug\BSP.Exception.pdb
+C:\Users\x\Desktop\BSP\04_Domain\BSP.ViewModel\obj\Debug\BSP.ViewModel.csprojResolveAssemblyReference.cache
+C:\Users\x\Desktop\BSP\04_Domain\BSP.ViewModel\obj\Debug\BSP.ViewModel.dll
+C:\Users\x\Desktop\BSP\04_Domain\BSP.ViewModel\obj\Debug\BSP.ViewModel.pdb
